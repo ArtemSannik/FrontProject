@@ -1,14 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import './LoginForm.css';
 import { Link } from "react-router-dom";
+import MaskedInput from "react-text-mask";
 
 const LoginForm = () => {
+
+    const [isFocused, setIsFocused] = useState(false); // состояние для фокуса
+    const [phoneValue, setPhoneValue] = useState(""); // Если фокус потерялся на поле возвращаем плейс
+
+    const handleFocus = () => {
+        if(!phoneValue){
+            setPhoneValue("+7 ");
+        }
+        setIsFocused(true); // Меняем состояние на true при фокусе
+    };
+
+    const handleNotFocus = () => {
+        if(phoneValue === "+7 "  || phoneValue === ""){
+            setPhoneValue("");
+        }
+        setIsFocused(false); // меняю состояние на false
+    };
+
+    const handleChange = (e) => {
+        setPhoneValue(e.target.value); // Отслеживаем ввод пользователя
+
+    };
+
     return(
+
         <div className="wrapper">
             <form action="">
                 <h1>Вход</h1>
+
                 <div className="input-box">
-                    <input type="number" placeholder="Номер телефона" required />
+                 <MaskedInput
+                    mask={['+', '7', ' ', '(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/]}
+                    placeholder={isFocused || phoneValue ? "" : "Номер телефона"}
+                    guide={false} // отключает автоматическую вставку пробелов
+                    id="phone"
+                    value={phoneValue}
+                    onFocus={handleFocus}
+                    onBlur={handleNotFocus}
+                    onChange={handleChange}
+                    required
+                />
                 </div>
 
                 <div className="input-box">

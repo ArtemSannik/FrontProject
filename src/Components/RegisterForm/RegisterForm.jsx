@@ -3,27 +3,53 @@ import React, { useState } from "react"
 import './RegisterForm.css'
 import { HiArrowCircleLeft } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import MaskedInput from "react-text-mask";
+
 
 
 const RegisterForm = () => {
     const [selectedOption, setSelectedOption] = useState(''); // для выбора роли
     const [city, setCity] = useState(''); // для поля города
+    const [isFocused, setIsFocused] = useState(false); // состояние для фокуса
+    const [phoneValue, setPhoneValue] = useState(""); // Если фокус потерялся на поле возвращаем плейс
+
   
-    const handleChange = (event) => {
+    const handleRoleChange  = (event) => {
       setSelectedOption(event.target.value);
     };
-  
+
     const handleCityChange = (event) => {
       setCity(event.target.value);
+    };
+
+    const handlePhoneChange = (event) => {
+      setPhoneValue(event.target.value);
     };
   
     const handleSubmit = (event) => {
       event.preventDefault();
       console.log('Выбранная опция:', selectedOption);
-      if (selectedOption === 'user') {
+      if (selectedOption === 'callcenter') {
         console.log('Город:', city);
       }
+
     };
+
+    const handleFocus = () => {
+      if(!phoneValue){
+          setPhoneValue("+7 ");
+      }
+      setIsFocused(true); // Меняем состояние на true при фокусе
+  };
+
+  const handleNotFocus = () => {
+    if(phoneValue === "+7 "  || phoneValue === ""){
+        setPhoneValue("");
+    }
+    setIsFocused(false); // меняю состояние на false
+};
+    
+
   
     return (
 
@@ -39,7 +65,17 @@ const RegisterForm = () => {
           </div>
   
           <div className="input-box">
-            <input type="number" placeholder="Номер телефона" required />
+          <MaskedInput
+                    mask={['+', '7', ' ', '(', /\d/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/]}
+                    placeholder={isFocused || phoneValue ? "" : "Номер телефона"}
+                    guide={false} // отключает автоматическую вставку пробелов
+                    id="phone"
+                    value={phoneValue}
+                    onFocus={handleFocus}
+                    onBlur={handleNotFocus}
+                    onChange={handlePhoneChange}
+                    required
+                />
           </div>
   
           <div className="input-box">
@@ -48,7 +84,7 @@ const RegisterForm = () => {
   
           <div className="input-box">
             <label htmlFor="role">Выберите Отдел:</label>
-            <select id="role" value={selectedOption} onChange={handleChange}>
+            <select id="role" value={selectedOption} onChange={handleRoleChange}>
               <option value="" disabled>
                 Выберите
               </option>
