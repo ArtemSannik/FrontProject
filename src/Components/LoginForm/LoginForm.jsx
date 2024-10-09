@@ -1,5 +1,6 @@
 import React from "react";
-import './LoginForm.css'
+import './LoginForm.css';
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
     return(
@@ -16,13 +17,15 @@ const LoginForm = () => {
 
                 <div className="remember-forgot">
                     <label><input type="checkbox" />Запомнить меня</label>
-                    <a href="#">Сменить пароль</a>
+                    {/* <a href="#">Сменить пароль</a> */}
                 </div>
 
                 <button type="submit">Войти</button>
 
                 <div className="register-link">
-                    <p><a href="#">Регистрация</a></p>
+                    <p>
+                        <Link to = "./register">Регистрация</Link>
+                    </p>
                 </div>
             </form>
         </div>

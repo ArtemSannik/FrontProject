@@ -1,0 +1,32 @@
+
+.btn_registration{
+    margin-bottom: 30px ;
+}
+
+.register-conteiner{
+    display: flex;           /* Горизонтальное выравнивание стрелки и текста */
+    align-items: center;      /* Центровка по вертикали */
+    justify-content: center;  /* Центровка всего блока */
+    margin-bottom: 20px; 
+}
+
+.array-back {
+    font-size: 30px;          /* Увеличиваем размер стрелки */
+    margin-right: 10px ;       /* Отступ между стрелкой и текстом */
+    margin-top: 20px;
+    color: #fff;   
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.array-back:hover{
+color:#2985c1;
+font-size: 50px;
+transform: scale(1.2);
+}
+
+  .register-container h1 {
+    font-size: 24px; 
+  }
+

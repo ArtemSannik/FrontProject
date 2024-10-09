@@ -41,9 +41,9 @@
 
 .wrapper .remember-forgot{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     font-size: 14.5px;
-    margin: -15px 0 15px;
+    margin: 15px 0 25px;
     padding-left: 20px;
 }
 
@@ -52,11 +52,11 @@
     margin-right: 5px;
 }
 
-.remember-forgot a{
+/* .remember-forgot a{
     color: #fff;
     text-decoration: none;
     padding-right: 20px;
-}
+} */
 
 .remember-forgot a:hover{
     text-decoration: underline;
@@ -73,6 +73,13 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+button:hover{
+    background: #20c997;
+    font-size: 20px;
+    transform: scale(1.2);
 }
 
 .wrapper .register-link {
@@ -80,6 +87,7 @@
     text-align: center;
     margin-top: 20px;
     padding-bottom: 30px;
+    
 
 }
 
@@ -88,8 +96,12 @@
     text-decoration: none;
     font-weight: 600;
     padding-bottom: 5px;
+    transition: all 0.3s ease;
 }
 
 .register-link p a:hover {
     text-decoration: underline;
+    color:#2985c1;
+    font-size: 20px;
+    transform: scale(1.2);
 }
